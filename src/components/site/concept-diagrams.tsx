@@ -65,6 +65,40 @@ function DiagramNode({
   );
 }
 
+function SignalPill({
+  icon: Icon,
+  label,
+  className,
+  delay = 0,
+}: {
+  icon: LucideIcon;
+  label: string;
+  className?: string;
+  delay?: number;
+}) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className={cn(
+        "absolute inline-flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/98 px-3.5 py-2 shadow-[0_14px_28px_-26px_rgba(15,23,42,0.18)]",
+        className,
+      )}
+      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+      whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.42, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <span className="inline-flex size-7 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--surface-subtle)] text-[color:var(--brand-red)]">
+        <Icon className="size-3.5" strokeWidth={1.8} />
+      </span>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[color:var(--foreground)]">
+        {label}
+      </span>
+    </motion.div>
+  );
+}
+
 function RoadmapStageCard({
   step,
   icon: Icon,
@@ -455,6 +489,118 @@ export function HeroOrbit({ className }: { className?: string }) {
         compact
         delay={0.48}
       />
+      </div>
+    </DiagramFrame>
+  );
+}
+
+export function HeroFocusDiagram({ className }: { className?: string }) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <DiagramFrame className={cn("w-full min-h-[19rem] md:aspect-[1.24/1] md:min-h-0", className)}>
+      <div className="flex h-full flex-col gap-3 p-4 md:hidden">
+        <MobileDiagramCard
+          icon={CalendarDays}
+          label="Meet results"
+          detail="One verified input"
+          delay={0.04}
+        />
+        <MobileCoreCard
+          label="Core system"
+          title="Verified data"
+          detail="One clean record for the whole sport"
+        />
+        <div className="grid gap-3 sm:grid-cols-3">
+          <MobileDiagramCard
+            icon={UserRound}
+            label="Profiles"
+            detail="Athlete records"
+            delay={0.08}
+          />
+          <MobileDiagramCard
+            icon={Trophy}
+            label="Rankings"
+            detail="National tables"
+            delay={0.14}
+          />
+          <MobileDiagramCard
+            icon={ShieldCheck}
+            label="Trust"
+            detail="Verified programs"
+            delay={0.2}
+          />
+        </div>
+      </div>
+      <div className="hidden h-full md:block">
+        <svg viewBox="0 0 620 420" className="absolute inset-0 h-full w-full" aria-hidden="true">
+          <rect
+            x="58"
+            y="56"
+            width="504"
+            height="308"
+            rx="34"
+            fill="rgba(255,255,255,0.7)"
+            stroke="rgba(15,23,42,0.06)"
+            strokeWidth="1.5"
+          />
+          <AnimatedConnector d="M166 212H254" delay={0.05} />
+          <AnimatedConnector d="M366 152C404 152 412 142 442 142" delay={0.28} />
+          <AnimatedConnector d="M374 212H442" delay={0.46} />
+          <AnimatedConnector d="M366 272C404 272 412 282 442 282" delay={0.64} />
+          <motion.circle
+            r="5"
+            cy="212"
+            fill="rgba(37,99,235,0.9)"
+            initial={reducedMotion ? { opacity: 0.72, cx: 166 } : { opacity: 0.32, cx: 166 }}
+            whileInView={
+              reducedMotion
+                ? { opacity: 0.72, cx: 166 }
+                : { opacity: [0.32, 0.9, 0.32], cx: [166, 252, 166] }
+            }
+            viewport={{ once: true, amount: 0.3 }}
+            transition={
+              reducedMotion
+                ? { duration: 0 }
+                : {
+                    duration: 3.4,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                    delay: 0.18,
+                  }
+            }
+          />
+        </svg>
+        <SignalPill
+          className="left-[10%] top-[46%]"
+          icon={CalendarDays}
+          label="Meet results"
+          delay={0.08}
+        />
+        <CoreHalo
+          className="left-[36%] top-[22%] h-[56%] w-[24%]"
+          label="Core system"
+          title="Verified data"
+          detail="One clean record for the sport"
+        />
+        <SignalPill
+          className="right-[10%] top-[23%]"
+          icon={UserRound}
+          label="Profiles"
+          delay={0.22}
+        />
+        <SignalPill
+          className="right-[9%] top-[46%]"
+          icon={Trophy}
+          label="Rankings"
+          delay={0.34}
+        />
+        <SignalPill
+          className="right-[10%] top-[69%]"
+          icon={ShieldCheck}
+          label="Trust"
+          delay={0.46}
+        />
       </div>
     </DiagramFrame>
   );

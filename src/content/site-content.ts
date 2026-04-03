@@ -31,12 +31,12 @@ export const navItems: NavItem[] = [
 export const pageConfigs: Record<string, PageConfig> = {
   overview: {
     slug: "/",
-    title: "One place for every verified athletics record in the Philippines",
+    title: "Verified athletics data for the Philippines",
     eyebrow: "Private brief",
-    intro: "Results go in. Profiles, rankings, and trust come out.",
+    intro: "One national source of truth for results, profiles, rankings, and trust.",
     description:
       "Overview of the Philippine Athletics App, the digital single source of truth for athletics in the Philippines.",
-    highlight: "Built so athletes from any province can be seen.",
+    highlight: "Built so talent from any province can be seen.",
   },
   platform: {
     slug: "/platform",
