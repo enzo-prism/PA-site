@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { createElement } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Script from "next/script";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -38,6 +40,8 @@ export default async function AccessPage({
       id="main-content"
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-10"
     >
+      <Script src="https://cdn.lordicon.com/lordicon.js" strategy="afterInteractive" />
+
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.075),transparent_68%)]" />
         <div className="absolute left-1/2 top-1/2 h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[color:var(--line)]/60" />
@@ -45,19 +49,23 @@ export default async function AccessPage({
 
       <section className="relative w-full max-w-sm">
         <div className="mb-8 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[color:var(--muted-foreground)]">
-            Philippine Athletics
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.07em] text-[color:var(--foreground)] sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-[-0.07em] text-[color:var(--foreground)] sm:text-5xl">
             Enter password
           </h1>
-          <p className="mt-3 text-sm text-[color:var(--muted-foreground)]">
-            Private brief.
-          </p>
         </div>
 
         <form action={unlockSite} className="space-y-3">
           <input type="hidden" name="from" value={from} />
+
+          <div className="mb-1 flex justify-center">
+            {createElement("lord-icon", {
+              src: "https://cdn.lordicon.com/vqarqhqq.json",
+              trigger: "loop",
+              delay: "2000",
+              colors: "primary:#121331,secondary:#66a1ee",
+              style: { width: "100px", height: "100px" },
+            })}
+          </div>
 
           <label htmlFor="share-code" className="sr-only">
             Password
@@ -87,7 +95,7 @@ export default async function AccessPage({
           ) : null}
 
           {process.env.NODE_ENV === "development" ? (
-            <p className="px-1 text-xs text-[color:var(--muted-foreground)]">
+            <p className="px-1 text-[11px] text-[color:var(--muted-foreground)]">
               Dev code: {DEV_ACCESS_CODE}
             </p>
           ) : null}
