@@ -2,6 +2,12 @@
 
 Private-share stakeholder and investor website for the **Philippine Athletics App**.
 
+## Repository
+
+- Canonical GitHub repo: `https://github.com/enzo-prism/PA-site.git`
+- Default branch: `main`
+- Local root: `/Users/enzo/ph`
+
 ## Stack
 
 - Next.js 16 App Router
@@ -13,20 +19,20 @@ Private-share stakeholder and investor website for the **Philippine Athletics Ap
 
 1. Copy `.env.example` to `.env.local`.
 2. Set `PH_SHARE_CODE` to the code you want to share privately.
-3. Optionally add contact details, data room links, and final media asset URLs.
+3. Optionally add the demo URL, data room link, and final media asset URLs.
 4. Install dependencies and run the app:
 
 ```bash
 npm install
-npm run dev
+npm run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
 ## Environment variables
 
 - `PH_SHARE_CODE`
   Access code for the private-share gate. In development only, the app falls back to `champion` if this is unset.
-- `NEXT_PUBLIC_CONTACT_EMAIL`
-  Contact CTA destination used across the site.
+- `NEXT_PUBLIC_WEB_APP_DEMO_URL`
+  Optional external demo link target. Defaults to `https://v0-philippine-athletics-design.vercel.app`.
 - `NEXT_PUBLIC_DATA_ROOM_URL`
   Optional link to a deck, PDF, or deeper investor materials.
 - `NEXT_PUBLIC_SITE_URL`
@@ -47,3 +53,4 @@ npm run dev
 - The site is intentionally `noindex` and serves a `robots.txt` that disallows crawling.
 - Access is enforced through `src/proxy.ts` using a cookie-based private-share flow.
 - All core copy, metrics, media slot metadata, and page structure live in typed local content files so the site can be iterated quickly without adding CMS overhead.
+- The repo-local `AGENTS.md` documents the canonical GitHub remote and preferred local workflow for future Codex sessions.
