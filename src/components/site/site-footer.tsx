@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="section-rule mt-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 md:px-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:px-6 md:px-10">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[color:var(--brand-red)]">
             Philippine Athletics App

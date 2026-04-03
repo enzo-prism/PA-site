@@ -36,32 +36,32 @@ export default function RoadmapPage() {
         panel={<RoadmapPathDiagram />}
         compact
       />
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Three phases"
           title="The rollout gets bigger only after it gets trusted"
           description="The sequence is intentional: prove the model in the field, then widen the network, then let the revenue base mature."
           icon={sectionIcons.roadmap}
         />
-        <div className="mt-10 grid gap-6 xl:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 xl:grid-cols-3">
           {rolloutTimeline.map((item) => (
             <article
               key={item.phase}
-              className="rounded-[1.75rem] border border-[color:var(--line)] bg-white p-6"
+              className="rounded-[1.45rem] border border-[color:var(--line)] bg-white p-5 sm:rounded-[1.75rem] sm:p-6"
             >
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[color:var(--brand-red)]">
                 {item.phase}
               </p>
-              <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-[color:var(--foreground)]">
+              <h3 className="mt-4 text-[2rem] font-semibold tracking-[-0.05em] text-[color:var(--foreground)] sm:text-3xl">
                 {item.title}
               </h3>
               <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-[color:var(--muted-foreground)]">
                 {item.window}
               </p>
-              <p className="mt-4 text-sm leading-7 text-[color:var(--muted-foreground)]">
+              <p className="mt-4 text-sm leading-6 text-[color:var(--muted-foreground)] sm:leading-7">
                 {item.summary}
               </p>
-              <div className="mt-6 space-y-3">
+              <div className="mt-5 space-y-3 sm:mt-6">
                 {item.highlights.map((highlight) => (
                   <div
                     key={highlight}
@@ -75,8 +75,8 @@ export default function RoadmapPage() {
           ))}
         </div>
       </section>
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(280px,1.1fr)] lg:items-start">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(280px,1.1fr)] lg:items-start lg:gap-12">
           <div>
             <SectionHeading
               eyebrow="Pilot playbook"
@@ -97,7 +97,7 @@ export default function RoadmapPage() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
+      <section className="section-tail mx-auto max-w-7xl">
         <ContactCta
           eyebrow="From rollout to funding"
           title="The business case only works if the field plan actually builds the network"

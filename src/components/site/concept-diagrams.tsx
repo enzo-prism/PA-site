@@ -235,9 +235,159 @@ function DiagramFrame({
   );
 }
 
+function MobileCoreCard({
+  label,
+  title,
+  detail,
+  className,
+}: {
+  label: string;
+  title: string;
+  detail?: string;
+  className?: string;
+}) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-[1.45rem] border border-[color:var(--line)] bg-white px-4 py-5 text-center shadow-[0_18px_36px_-30px_rgba(15,23,42,0.2)]",
+        className,
+      )}
+    >
+      <motion.div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.12),transparent_58%)]"
+        animate={
+          reducedMotion ? undefined : { opacity: [0.34, 0.7, 0.34], scale: [1, 1.02, 1] }
+        }
+        transition={{
+          duration: 4,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+      />
+      <div className="relative">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[color:var(--brand-red)]">
+          {label}
+        </p>
+        <p className="mt-2 text-[2rem] font-semibold leading-none tracking-[-0.06em] text-[color:var(--foreground)]">
+          {title}
+        </p>
+        {detail ? (
+          <p className="mt-2 text-xs leading-5 text-[color:var(--muted-foreground)]">
+            {detail}
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function MobileDiagramCard({
+  icon: Icon,
+  label,
+  detail,
+  className,
+  delay = 0,
+}: {
+  icon: LucideIcon;
+  label: string;
+  detail: string;
+  className?: string;
+  delay?: number;
+}) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className={cn(
+        "rounded-[1.2rem] border border-[color:var(--line)] bg-white px-4 py-3 shadow-[0_14px_28px_-26px_rgba(15,23,42,0.18)]",
+        className,
+      )}
+      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+      whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="flex items-start gap-3">
+        <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--surface-subtle)] text-[color:var(--brand-red)]">
+          <Icon className="size-4" strokeWidth={1.8} />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[color:var(--foreground)]">
+            {label}
+          </p>
+          <p className="mt-1 text-[11px] leading-5 text-[color:var(--muted-foreground)]">
+            {detail}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function MobileVerticalFlow({
+  items,
+}: {
+  items: { icon: LucideIcon; label: string; detail: string }[];
+}) {
+  return (
+    <div className="relative pl-5">
+      <div className="absolute bottom-4 left-[0.9rem] top-4 w-px bg-[color:var(--line)]" />
+      <div className="space-y-3">
+        {items.map((item, index) => (
+          <div key={item.label} className="relative">
+            <span className="absolute left-[-0.15rem] top-6 inline-flex size-2.5 rounded-full bg-[color:var(--brand-red)]" />
+            <MobileDiagramCard
+              icon={item.icon}
+              label={item.label}
+              detail={item.detail}
+              delay={index * 0.06}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function HeroOrbit({ className }: { className?: string }) {
   return (
-    <DiagramFrame className={cn("aspect-[1.16/1] w-full", className)}>
+    <DiagramFrame className={cn("w-full min-h-[22rem] md:aspect-[1.16/1] md:min-h-0", className)}>
+      <div className="flex h-full flex-col gap-3 p-4 md:hidden">
+        <MobileCoreCard
+          label="Core system"
+          title="Verified data"
+          detail="The single source of truth"
+        />
+        <div className="grid gap-3 sm:grid-cols-2">
+          <MobileDiagramCard
+            icon={CalendarDays}
+            label="Official results"
+            detail="From local, regional, and national meets"
+            delay={0.06}
+          />
+          <MobileDiagramCard
+            icon={UserRound}
+            label="Athlete profiles"
+            detail="PBs, SBs, and competition history"
+            delay={0.12}
+          />
+          <MobileDiagramCard
+            icon={Trophy}
+            label="National rankings"
+            detail="Every event, gender, and age group"
+            delay={0.18}
+          />
+          <MobileDiagramCard
+            icon={ShieldCheck}
+            label="Trusted directory"
+            detail="Recognition and safety signals"
+            delay={0.24}
+          />
+        </div>
+      </div>
+      <div className="hidden h-full md:block">
       <svg viewBox="0 0 620 440" className="absolute inset-0 h-full w-full" aria-hidden="true">
         <rect
           x="18"
@@ -305,13 +455,46 @@ export function HeroOrbit({ className }: { className?: string }) {
         compact
         delay={0.48}
       />
+      </div>
     </DiagramFrame>
   );
 }
 
 export function ResultsLoopDiagram({ className }: { className?: string }) {
   return (
-    <DiagramFrame className={cn("aspect-[1.28/1] w-full", className)}>
+    <DiagramFrame className={cn("w-full min-h-[23rem] md:aspect-[1.28/1] md:min-h-0", className)}>
+      <div className="flex h-full flex-col gap-3 p-4 md:hidden">
+        <MobileCoreCard
+          label="Verified loop"
+          title="One intake"
+          detail="Every verified result updates the platform"
+        />
+        <MobileVerticalFlow
+          items={[
+            {
+              icon: CalendarDays,
+              label: "Upload results",
+              detail: "CSV or Excel meet files",
+            },
+            {
+              icon: BadgeCheck,
+              label: "Validate data",
+              detail: "Check athletes, events, and age groups",
+            },
+            {
+              icon: UserRound,
+              label: "Update profiles",
+              detail: "Refresh records and rosters",
+            },
+            {
+              icon: Trophy,
+              label: "Publish rankings",
+              detail: "Keep leaderboards current",
+            },
+          ]}
+        />
+      </div>
+      <div className="hidden h-full md:block">
       <svg viewBox="0 0 620 480" className="absolute inset-0 h-full w-full" aria-hidden="true">
         <rect
           x="18"
@@ -362,13 +545,35 @@ export function ResultsLoopDiagram({ className }: { className?: string }) {
         title="One intake"
         detail="Every verified result updates the platform"
       />
+      </div>
     </DiagramFrame>
   );
 }
 
 export function EcosystemHubDiagram({ className }: { className?: string }) {
   return (
-    <DiagramFrame className={cn("aspect-square w-full", className)}>
+    <DiagramFrame className={cn("w-full min-h-[24rem] md:aspect-square md:min-h-0", className)}>
+      <div className="flex h-full flex-col gap-3 p-4 md:hidden">
+        <MobileCoreCard
+          label="Shared layer"
+          title="One trusted system"
+          detail="Profiles, rankings, directory, and recognition"
+        />
+        <div className="grid gap-3 sm:grid-cols-2">
+          <MobileDiagramCard icon={UserRound} label="Athletes" detail="Get seen" delay={0.06} />
+          <MobileDiagramCard icon={BadgeCheck} label="Coaches" detail="Show credentials" delay={0.12} />
+          <MobileDiagramCard icon={Building2} label="Clubs" detail="Verify programs" delay={0.18} />
+          <MobileDiagramCard icon={Handshake} label="Sponsors" detail="Reach members" delay={0.24} />
+          <MobileDiagramCard
+            icon={ShieldCheck}
+            label="Federation"
+            detail="Run the sport"
+            className="sm:col-span-2"
+            delay={0.3}
+          />
+        </div>
+      </div>
+      <div className="hidden h-full md:block">
       <svg viewBox="0 0 520 520" className="absolute inset-0 h-full w-full" aria-hidden="true">
         <rect
           x="18"
@@ -432,6 +637,7 @@ export function EcosystemHubDiagram({ className }: { className?: string }) {
         compact
         delay={0.48}
       />
+      </div>
     </DiagramFrame>
   );
 }
@@ -440,7 +646,81 @@ export function RoadmapPathDiagram({ className }: { className?: string }) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <DiagramFrame className={cn("aspect-[1.34/0.92] w-full", className)}>
+    <DiagramFrame className={cn("w-full min-h-[26rem] md:aspect-[1.34/0.92] md:min-h-0", className)}>
+      <div className="relative flex h-full flex-col gap-3 p-4 md:hidden">
+        <div className="absolute bottom-14 left-[1.15rem] top-[4.7rem] w-px bg-[color:var(--line)]" />
+        <MobileCoreCard
+          label="Roadmap"
+          title="3 phases"
+          detail="Pilot, scale, then sustain"
+        />
+        {[
+          {
+            step: "01",
+            icon: CalendarDays,
+            label: "Pilot",
+            detail: "Five provinces and field activation",
+          },
+          {
+            step: "02",
+            icon: Users,
+            label: "Scale",
+            detail: "Expand after proof",
+          },
+          {
+            step: "03",
+            icon: Handshake,
+            label: "Sustain",
+            detail: "Recurring member and club revenue",
+          },
+        ].map((item, index) => (
+          <motion.div
+            key={item.label}
+            className="relative pl-5"
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+            whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.45, delay: 0.08 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="absolute left-[-0.12rem] top-6 inline-flex size-2.5 rounded-full bg-[color:var(--brand-red)]" />
+            <div className="rounded-[1.2rem] border border-[color:var(--line)] bg-white px-4 py-4 shadow-[0_14px_28px_-26px_rgba(15,23,42,0.18)]">
+              <div className="flex items-start gap-3">
+                <span className="inline-flex min-w-[2.35rem] items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--surface-subtle)] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-[color:var(--brand-red)]">
+                  {item.step}
+                </span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex size-7 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--surface-subtle)] text-[color:var(--brand-red)]">
+                      <item.icon className="size-3.5" strokeWidth={1.8} />
+                    </span>
+                    <p className="text-[13px] font-semibold uppercase tracking-[0.24em] text-[color:var(--foreground)]">
+                      {item.label}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-[12px] leading-6 text-[color:var(--muted-foreground)]">
+                    {item.detail}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+        <div className="grid gap-2 pt-1">
+          {["Ground trust", "National growth", "Financial base"].map((label, index) => (
+            <motion.div
+              key={label}
+              className="rounded-full border border-[color:var(--line)] bg-[color:var(--surface-subtle)] px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-[color:var(--foreground)]"
+              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+              whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.4, delay: 0.34 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {label}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <div className="hidden h-full md:block">
       <svg viewBox="0 0 620 420" className="absolute inset-0 h-full w-full" aria-hidden="true">
         <rect
           x="18"
@@ -579,13 +859,42 @@ export function RoadmapPathDiagram({ className }: { className?: string }) {
           </motion.div>
         ))}
       </div>
+      </div>
     </DiagramFrame>
   );
 }
 
 export function BusinessFlywheelDiagram({ className }: { className?: string }) {
   return (
-    <DiagramFrame className={cn("aspect-square w-full", className)}>
+    <DiagramFrame className={cn("w-full min-h-[22rem] md:aspect-square md:min-h-0", className)}>
+      <div className="flex h-full flex-col gap-3 p-4 md:hidden">
+        <MobileCoreCard
+          label="Outcome"
+          title="Recurring base"
+          detail="A self-sustaining operating layer"
+        />
+        <div className="grid gap-3">
+          <MobileDiagramCard
+            icon={Users}
+            label="Youth members"
+            detail="Accessible annual base"
+            delay={0.06}
+          />
+          <MobileDiagramCard
+            icon={BadgeCheck}
+            label="Club certification"
+            detail="Recurring trust signal"
+            delay={0.12}
+          />
+          <MobileDiagramCard
+            icon={Handshake}
+            label="Sponsor upside"
+            detail="Private sector growth layer"
+            delay={0.18}
+          />
+        </div>
+      </div>
+      <div className="hidden h-full md:block">
       <svg viewBox="0 0 520 520" className="absolute inset-0 h-full w-full" aria-hidden="true">
         <rect
           x="18"
@@ -631,6 +940,7 @@ export function BusinessFlywheelDiagram({ className }: { className?: string }) {
         title="Self-sustaining"
         detail="A recurring operating base for the platform"
       />
+      </div>
     </DiagramFrame>
   );
 }
@@ -652,7 +962,7 @@ export function SimpleStakeGrid({
         return (
           <motion.div
             key={item.title}
-            className="rounded-[1.5rem] border border-[color:var(--line)] bg-white p-5"
+            className="rounded-[1.35rem] border border-[color:var(--line)] bg-white p-4 sm:rounded-[1.5rem] sm:p-5"
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -661,10 +971,10 @@ export function SimpleStakeGrid({
             <span className="inline-flex size-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--surface-subtle)] text-[color:var(--brand-red)]">
               <Icon className="size-4" strokeWidth={1.8} />
             </span>
-            <p className="mt-4 text-lg font-medium tracking-[-0.03em] text-[color:var(--foreground)]">
+            <p className="mt-3 text-[1.05rem] font-medium tracking-[-0.03em] text-[color:var(--foreground)] sm:mt-4 sm:text-lg">
               {item.title}
             </p>
-            <p className="mt-2 text-sm leading-7 text-[color:var(--muted-foreground)]">
+            <p className="mt-2 text-sm leading-6 text-[color:var(--muted-foreground)] sm:leading-7">
               {item.detail}
             </p>
           </motion.div>

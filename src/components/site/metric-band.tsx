@@ -11,10 +11,10 @@ type MetricBandProps = {
 export function MetricBand({ metrics }: MetricBandProps) {
   return (
     <section className="section-rule">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-2 md:px-10 xl:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-8 sm:px-6 sm:py-10 md:grid-cols-2 md:px-10 xl:grid-cols-4">
         {metrics.map((metric, index) => (
           <Reveal key={metric.label} delay={index * 0.04}>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <IconBadge icon={getMetricIcon(metric.label)} size="sm" />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-[color:var(--muted-foreground)]">
@@ -22,7 +22,7 @@ export function MetricBand({ metrics }: MetricBandProps) {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <p className="text-4xl font-semibold leading-none tabular-nums tracking-[-0.06em] text-[color:var(--foreground)]">
+                <p className="text-[2.4rem] font-semibold leading-none tabular-nums tracking-[-0.06em] text-[color:var(--foreground)] sm:text-4xl">
                   {metric.value}
                 </p>
                 {metric.emphasis === "forecast" ? (
@@ -31,7 +31,7 @@ export function MetricBand({ metrics }: MetricBandProps) {
                   </span>
                 ) : null}
               </div>
-              <p className="max-w-xs text-sm leading-7 text-[color:var(--muted-foreground)]">
+              <p className="max-w-xs text-sm leading-6 text-[color:var(--muted-foreground)] sm:leading-7">
                 {metric.context}
               </p>
             </div>

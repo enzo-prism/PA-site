@@ -18,11 +18,11 @@ export function PageLinkGrid({ items }: PageLinkGridProps) {
         <Reveal key={item.href} delay={index * 0.04}>
           <Link
             href={item.href}
-            className="group flex h-full items-center justify-between gap-6 rounded-[1.5rem] border border-[color:var(--line)] bg-white px-5 py-5 transition-[border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-[color:var(--brand-red)]/18"
+            className="group flex h-full items-center justify-between gap-4 rounded-[1.35rem] border border-[color:var(--line)] bg-white px-4 py-4 transition-[border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-[color:var(--brand-red)]/18 sm:gap-6 sm:rounded-[1.5rem] sm:px-5 sm:py-5"
           >
-            <div className="flex items-start gap-4">
+            <div className="flex min-w-0 items-start gap-3 sm:gap-4">
               <IconBadge icon={getNavIcon(item.href)} size="sm" />
-              <div>
+              <div className="min-w-0">
                 <p className="text-base font-medium text-[color:var(--foreground)]">
                   {item.label}
                 </p>

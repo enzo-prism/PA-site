@@ -74,7 +74,7 @@ export default function OverviewPage() {
         panel={<HeroOrbit />}
       />
       <MetricBand metrics={overviewMetrics} />
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="In one glance"
           title="Three simple jobs"
@@ -83,7 +83,7 @@ export default function OverviewPage() {
         />
         <SimpleStakeGrid items={overviewConcepts} className="mt-10 xl:grid-cols-3" />
       </section>
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(300px,1.05fr)] lg:items-center">
           <div>
             <SectionHeading
@@ -109,7 +109,7 @@ export default function OverviewPage() {
           <ResultsLoopDiagram />
         </div>
       </section>
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(300px,0.95fr)] lg:items-start">
           <div>
             <SectionHeading
@@ -129,7 +129,7 @@ export default function OverviewPage() {
           />
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
+      <section className="section-tail mx-auto max-w-7xl">
         <ContactCta
           eyebrow="Next step"
           title="Share this first. Open deeper materials second."

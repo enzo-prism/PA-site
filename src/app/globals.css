@@ -38,6 +38,7 @@
 
   body {
     min-height: 100vh;
+    overflow-x: hidden;
     background:
       radial-gradient(circle at top left, rgba(37, 99, 235, 0.055), transparent 24%),
       linear-gradient(180deg, #ffffff 0%, #fbfcfe 48%, #f7f9fc 100%);
@@ -107,6 +108,14 @@
       rgba(15, 23, 42, 0.1),
       transparent
     );
+  }
+
+  .section-pad {
+    @apply px-5 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20;
+  }
+
+  .section-tail {
+    @apply px-5 pb-20 sm:px-6 sm:pb-24 md:px-10;
   }
 }
 

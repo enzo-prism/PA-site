@@ -25,7 +25,7 @@ export function SectionHeading({
     >
       <div
         className={cn(
-          "mb-4 flex items-center gap-3",
+          "mb-3 flex items-center gap-3 sm:mb-4",
           align === "center" && "justify-center",
         )}
       >
@@ -34,10 +34,10 @@ export function SectionHeading({
           {eyebrow}
         </p>
       </div>
-      <h2 className="text-4xl font-semibold leading-[0.96] tracking-[-0.06em] text-[color:var(--foreground)] md:text-[3.4rem]">
+      <h2 className="text-[2.45rem] font-semibold leading-[0.98] tracking-[-0.065em] text-[color:var(--foreground)] sm:text-[2.9rem] md:text-[3.4rem]">
         {title}
       </h2>
-      <p className="mt-4 max-w-2xl text-base leading-8 text-[color:var(--muted-foreground)] md:text-lg">
+      <p className="mt-3 max-w-2xl text-[15px] leading-7 text-[color:var(--muted-foreground)] sm:mt-4 sm:text-base sm:leading-8 md:text-lg">
         {description}
       </p>
     </div>

@@ -29,7 +29,7 @@ export function SiteHeader({ navItems, dataRoomUrl }: SiteHeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[color:var(--line)] bg-white/88 backdrop-blur-xl">
-      <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between gap-6 px-6 md:px-10">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:h-[4.1rem] sm:px-6 md:gap-6 md:px-10">
         <Link href="/" className="min-w-0">
           <span className="block text-[11px] font-semibold uppercase tracking-[0.34em] text-[color:var(--brand-red)]">
             Philippine Athletics

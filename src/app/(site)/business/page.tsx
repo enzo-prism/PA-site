@@ -49,34 +49,34 @@ export default function BusinessPage() {
         panel={<BusinessFlywheelDiagram />}
         compact
       />
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Modeled foundation"
           title="The base case is simple"
           description="Small recurring fees fund the core. Sponsor participation adds upside after the network is real."
           icon={sectionIcons.finance}
         />
-        <div className="mt-10 grid gap-4 xl:grid-cols-2">
+        <div className="mt-8 grid gap-4 sm:mt-10 xl:grid-cols-2">
           {projectionAssumptions.map((assumption) => (
             <article
               key={assumption.label}
-              className="rounded-[1.5rem] border border-[color:var(--line)] bg-white p-5"
+              className="rounded-[1.35rem] border border-[color:var(--line)] bg-white p-4 sm:rounded-[1.5rem] sm:p-5"
             >
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[color:var(--brand-red)]">
                 {assumption.label}
               </p>
-              <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-[color:var(--foreground)]">
+              <p className="mt-3 text-[2rem] font-semibold tracking-[-0.05em] text-[color:var(--foreground)] sm:text-3xl">
                 {assumption.value}
               </p>
-              <p className="mt-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
+              <p className="mt-3 text-sm leading-6 text-[color:var(--muted-foreground)] sm:leading-7">
                 {assumption.note}
               </p>
             </article>
           ))}
         </div>
       </section>
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(300px,1.12fr)] lg:items-start">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(300px,1.12fr)] lg:items-start lg:gap-12">
           <div>
             <SectionHeading
               eyebrow="Investor posture"
@@ -101,8 +101,8 @@ export default function BusinessPage() {
           />
         </div>
       </section>
-      <section className="section-rule mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(320px,1.18fr)] lg:items-start">
+      <section className="section-rule section-pad mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(320px,1.18fr)] lg:items-start lg:gap-12">
           <div>
             <SectionHeading
               eyebrow="FAQ"
@@ -111,7 +111,7 @@ export default function BusinessPage() {
               icon={sectionIcons.questions}
             />
           </div>
-          <div className="rounded-[1.75rem] border border-[color:var(--line)] bg-white px-6 py-4">
+          <div className="rounded-[1.45rem] border border-[color:var(--line)] bg-white px-4 py-3 sm:rounded-[1.75rem] sm:px-6 sm:py-4">
             <Accordion type="single" collapsible>
               {faqItems.map((item) => (
                 <AccordionItem key={item.question} value={item.question}>
@@ -123,7 +123,7 @@ export default function BusinessPage() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
+      <section className="section-tail mx-auto max-w-7xl">
         <ContactCta
           eyebrow="Close"
           title="Use the site to create alignment fast"
