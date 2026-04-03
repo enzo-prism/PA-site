@@ -15,7 +15,7 @@ import { SubmitButton } from "./submit-button";
 
 export const metadata: Metadata = {
   title: "Access",
-  description: "Private access gate for the Philippine Athletics stakeholder brief.",
+  description: "Private access.",
 };
 
 export default async function AccessPage({

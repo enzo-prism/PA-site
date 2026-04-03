@@ -34,8 +34,7 @@ export const pageConfigs: Record<string, PageConfig> = {
     title: "Verified athletics data for the Philippines",
     eyebrow: "Private brief",
     intro: "One national source of truth for results, profiles, rankings, and trust.",
-    description:
-      "Overview of the Philippine Athletics App, the digital single source of truth for athletics in the Philippines.",
+    description: "Project overview.",
     highlight: "Built so talent from any province can be seen.",
   },
   platform: {
@@ -43,8 +42,7 @@ export const pageConfigs: Record<string, PageConfig> = {
     title: "One meet upload powers the whole platform",
     eyebrow: "Platform",
     intro: "Every official result feeds the same loop.",
-    description:
-      "Platform view covering athlete passports, rankings, directory, competition management, and trust verification.",
+    description: "Platform summary.",
     highlight: "Simple input. Verified output.",
   },
   ecosystem: {
@@ -52,8 +50,7 @@ export const pageConfigs: Record<string, PageConfig> = {
     title: "One data layer. Five clear wins.",
     eyebrow: "Ecosystem",
     intro: "Athletes, coaches, clubs, sponsors, and federations all get value from the same verified system.",
-    description:
-      "How Philippine Athletics creates value across athletes, coaches, clubs, sponsors, and governing bodies.",
+    description: "Ecosystem summary.",
     highlight: "Trust gets stronger when everyone uses the same source.",
   },
   roadmap: {
@@ -61,8 +58,7 @@ export const pageConfigs: Record<string, PageConfig> = {
     title: "Pilot first. Scale second. Sustain third.",
     eyebrow: "Roadmap",
     intro: "The rollout starts on the ground, not just on the screen.",
-    description:
-      "Three-phase launch plan covering pilot provinces, national scaling, and financial independence.",
+    description: "Rollout plan.",
     highlight: "Field trust comes before national standardization.",
   },
   business: {
@@ -70,8 +66,7 @@ export const pageConfigs: Record<string, PageConfig> = {
     title: "Small annual fees build the base. Sponsors add upside.",
     eyebrow: "Business",
     intro: "The model is designed to fund the system without depending only on grants.",
-    description:
-      "Revenue model, assumptions, and investor-facing sustainability narrative for Philippine Athletics.",
+    description: "Business model.",
     highlight: "Forecasts are modeled, not presented as booked revenue.",
   },
 };

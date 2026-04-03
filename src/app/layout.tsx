@@ -16,11 +16,28 @@ const metadataBase = process.env.NEXT_PUBLIC_SITE_URL
 export const metadata: Metadata = {
   metadataBase,
   title: {
-    default: "Philippine Athletics App | Stakeholder Brief",
-    template: "%s | Philippine Athletics App",
+    default: "Philippine Athletics",
+    template: "%s | Philippine Athletics",
   },
-  description:
-    "Private stakeholder and investor brief for the Philippine Athletics App, a national single source of truth for athletics in the Philippines.",
+  description: "Private athletics brief.",
+  openGraph: {
+    title: "Philippine Athletics",
+    description: "Private athletics brief.",
+    images: [
+      {
+        url: "/opengraph.png",
+        width: 1200,
+        height: 630,
+        alt: "Philippine Athletics App overview illustration",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Philippine Athletics",
+    description: "Private athletics brief.",
+    images: ["/opengraph.png"],
+  },
   robots: {
     index: false,
     follow: false,
