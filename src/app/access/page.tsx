@@ -61,7 +61,8 @@ export default async function AccessPage({
             {createElement("lord-icon", {
               src: "https://cdn.lordicon.com/vqarqhqq.json",
               trigger: "loop",
-              delay: "2000",
+              delay: "1333",
+              speed: "1.5",
               colors: "primary:#121331,secondary:#66a1ee",
               style: { width: "100px", height: "100px" },
             })}
