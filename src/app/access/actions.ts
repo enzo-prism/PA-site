@@ -31,10 +31,9 @@ export async function unlockSite(formData: FormData) {
 
   cookieStore.set(ACCESS_COOKIE_NAME, "granted", {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 60 * 60 * 12,
   });
 
   redirect(from || "/");

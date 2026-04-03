@@ -19,14 +19,22 @@ export function proxy(request: NextRequest) {
   const expectedCode = getExpectedAccessCode();
 
   if (!expectedCode || isPublicPath(request.nextUrl.pathname)) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+
+    if (expectedCode) {
+      response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    }
+
+    return response;
   }
 
   const hasAccess =
     request.cookies.get(ACCESS_COOKIE_NAME)?.value === "granted";
 
   if (hasAccess) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    return response;
   }
 
   const accessUrl = new URL("/access", request.url);
@@ -36,7 +44,9 @@ export function proxy(request: NextRequest) {
     accessUrl.searchParams.set("from", returnPath);
   }
 
-  return NextResponse.redirect(accessUrl);
+  const response = NextResponse.redirect(accessUrl);
+  response.headers.set("Cache-Control", "private, no-store, max-age=0");
+  return response;
 }
 
 export const config = {
